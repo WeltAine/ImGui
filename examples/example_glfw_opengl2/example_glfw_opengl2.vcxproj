@@ -166,6 +166,7 @@
     <ClCompile Include="..\..\imgui_widgets.cpp" />
     <ClCompile Include="..\..\backends\imgui_impl_glfw.cpp" />
     <ClCompile Include="..\..\backends\imgui_impl_opengl2.cpp" />
+    <ClCompile Include="main - 副本-zh-CN-translation.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
