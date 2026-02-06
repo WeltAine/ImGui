@@ -1699,35 +1699,35 @@ enum ImGuiInputFlags_
     ImGuiInputFlags_Tooltip                 = 1 << 18,  // Automatically display a tooltip when hovering item [BETA] Unsure of right api (opt-in/opt-out)
 };
 
-// Configuration flags stored in io.ConfigFlags. Set by user/application.
+// 配置标志存储在 io.ConfigFlags 中。由用户/应用程序设置。
 enum ImGuiConfigFlags_
 {
     ImGuiConfigFlags_None                   = 0,
-    ImGuiConfigFlags_NavEnableKeyboard      = 1 << 0,   // Master keyboard navigation enable flag. Enable full Tabbing + directional arrows + space/enter to activate.
-    ImGuiConfigFlags_NavEnableGamepad       = 1 << 1,   // Master gamepad navigation enable flag. Backend also needs to set ImGuiBackendFlags_HasGamepad.
-    ImGuiConfigFlags_NoMouse                = 1 << 4,   // Instruct dear imgui to disable mouse inputs and interactions.
-    ImGuiConfigFlags_NoMouseCursorChange    = 1 << 5,   // Instruct backend to not alter mouse cursor shape and visibility. Use if the backend cursor changes are interfering with yours and you don't want to use SetMouseCursor() to change mouse cursor. You may want to honor requests from imgui by reading GetMouseCursor() yourself instead.
-    ImGuiConfigFlags_NoKeyboard             = 1 << 6,   // Instruct dear imgui to disable keyboard inputs and interactions. This is done by ignoring keyboard events and clearing existing states.
+    ImGuiConfigFlags_NavEnableKeyboard      = 1 << 0,   // 主键盘导航启用标志。启用完整的 Tab 键切换 + 方向键 + 空格/回车键激活功能。
+    ImGuiConfigFlags_NavEnableGamepad       = 1 << 1,   // 主手柄导航启用标志。后端还需设置 ImGuiBackendFlags_HasGamepad。
+    ImGuiConfigFlags_NoMouse                = 1 << 4,   // 指示 dear imgui 禁用鼠标输入和交互。
+    ImGuiConfigFlags_NoMouseCursorChange    = 1 << 5,   // 指示后端不要更改鼠标光标的形状和可见性。如果后端的游标更改干扰了你自己的设置，且你不想使用 SetMouseCursor() 来更改鼠标光标，请使用此选项。你可能需要通过自行读取 GetMouseCursor() 来响应来自 imgui 的请求。
+    ImGuiConfigFlags_NoKeyboard             = 1 << 6,   // 指示 dear imgui 禁用键盘输入和交互。这通过忽略键盘事件并清除现有状态来实现。
 
-    // User storage (to allow your backend/engine to communicate to code that may be shared between multiple projects. Those flags are NOT used by core Dear ImGui)
-    ImGuiConfigFlags_IsSRGB                 = 1 << 20,  // Application is SRGB-aware.
-    ImGuiConfigFlags_IsTouchScreen          = 1 << 21,  // Application is using a touch screen instead of a mouse.
+    // 用户存储（允许你的后端/引擎与可能在多个项目之间共享的代码进行通信。这些标志不被 Dear ImGui 核心库使用）
+    ImGuiConfigFlags_IsSRGB                 = 1 << 20,  // 应用程序支持 SRGB。
+    ImGuiConfigFlags_IsTouchScreen          = 1 << 21,  // 应用程序正在使用触摸屏而非鼠标。
 
 #ifndef IMGUI_DISABLE_OBSOLETE_FUNCTIONS
-    ImGuiConfigFlags_NavEnableSetMousePos   = 1 << 2,   // [moved/renamed in 1.91.4] -> use bool io.ConfigNavMoveSetMousePos
-    ImGuiConfigFlags_NavNoCaptureKeyboard   = 1 << 3,   // [moved/renamed in 1.91.4] -> use bool io.ConfigNavCaptureKeyboard
+    ImGuiConfigFlags_NavEnableSetMousePos   = 1 << 2,   // [在 1.91.4 中移动/重命名] -> 请使用 bool io.ConfigNavMoveSetMousePos
+    ImGuiConfigFlags_NavNoCaptureKeyboard   = 1 << 3,   // [在 1.91.4 中移动/重命名] -> 请使用 bool io.ConfigNavCaptureKeyboard
 #endif
 };
 
-// Backend capabilities flags stored in io.BackendFlags. Set by imgui_impl_xxx or custom backend.
+// 存储在 io.BackendFlags 中的后端能力标志。由 imgui_impl_xxx 或自定义后端设置。
 enum ImGuiBackendFlags_
 {
     ImGuiBackendFlags_None                  = 0,
-    ImGuiBackendFlags_HasGamepad            = 1 << 0,   // Backend Platform supports gamepad and currently has one connected.
-    ImGuiBackendFlags_HasMouseCursors       = 1 << 1,   // Backend Platform supports honoring GetMouseCursor() value to change the OS cursor shape.
-    ImGuiBackendFlags_HasSetMousePos        = 1 << 2,   // Backend Platform supports io.WantSetMousePos requests to reposition the OS mouse position (only used if io.ConfigNavMoveSetMousePos is set).
-    ImGuiBackendFlags_RendererHasVtxOffset  = 1 << 3,   // Backend Renderer supports ImDrawCmd::VtxOffset. This enables output of large meshes (64K+ vertices) while still using 16-bit indices.
-    ImGuiBackendFlags_RendererHasTextures   = 1 << 4,   // Backend Renderer supports ImTextureData requests to create/update/destroy textures. This enables incremental texture updates and texture reloads. See https://github.com/ocornut/imgui/blob/master/docs/BACKENDS.md for instructions on how to upgrade your custom backend.
+    ImGuiBackendFlags_HasGamepad            = 1 << 0,   // 后端平台支持手柄且当前已连接一个手柄。
+    ImGuiBackendFlags_HasMouseCursors       = 1 << 1,   // 后端平台支持根据 GetMouseCursor() 的返回值来更改操作系统光标形状。
+    ImGuiBackendFlags_HasSetMousePos        = 1 << 2,   // 后端平台支持 io.WantSetMousePos 请求以重新定位操作系统鼠标位置（仅在设置了 io.ConfigNavMoveSetMousePos 时使用）。
+    ImGuiBackendFlags_RendererHasVtxOffset  = 1 << 3,   // 后端渲染器支持 ImDrawCmd::VtxOffset。这使得在仍使用 16 位索引的情况下能够输出大型网格（64K+ 顶点）。
+    ImGuiBackendFlags_RendererHasTextures   = 1 << 4,   // 后端渲染器支持 ImTextureData 请求以创建/更新/销毁纹理。这启用了增量纹理更新和纹理重新加载。有关如何升级自定义后端的说明，请参阅 https://github.com/ocornut/imgui/blob/master/docs/BACKENDS.md。
 };
 
 // Enumeration for PushStyleColor() / PopStyleColor()
