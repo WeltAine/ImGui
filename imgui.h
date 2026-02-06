@@ -2392,226 +2392,226 @@ struct ImGuiKeyData
 struct ImGuiIO
 {
     //------------------------------------------------------------------
-    // Configuration                            // Default value
+    // 配置                                       // 默认值
     //------------------------------------------------------------------
 
-    ImGuiConfigFlags   ConfigFlags;             // = 0              // See ImGuiConfigFlags_ enum. Set by user/application. Keyboard/Gamepad navigation options, etc.
-    ImGuiBackendFlags  BackendFlags;            // = 0              // See ImGuiBackendFlags_ enum. Set by backend (imgui_impl_xxx files or custom backend) to communicate features supported by the backend.
-    ImVec2      DisplaySize;                    // <unset>          // Main display size, in pixels (== GetMainViewport()->Size). May change every frame.
-    ImVec2      DisplayFramebufferScale;        // = (1, 1)         // Main display density. For retina display where window coordinates are different from framebuffer coordinates. This will affect font density + will end up in ImDrawData::FramebufferScale.
-    float       DeltaTime;                      // = 1.0f/60.0f     // Time elapsed since last frame, in seconds. May change every frame.
-    float       IniSavingRate;                  // = 5.0f           // Minimum time between saving positions/sizes to .ini file, in seconds.
-    const char* IniFilename;                    // = "imgui.ini"    // Path to .ini file (important: default "imgui.ini" is relative to current working dir!). Set NULL to disable automatic .ini loading/saving or if you want to manually call LoadIniSettingsXXX() / SaveIniSettingsXXX() functions.
-    const char* LogFilename;                    // = "imgui_log.txt"// Path to .log file (default parameter to ImGui::LogToFile when no file is specified).
-    void*       UserData;                       // = NULL           // Store your own data.
+    ImGuiConfigFlags   ConfigFlags;                             // = 0                  // 详见 ImGuiConfigFlags_ 枚举。由用户/应用程序设置。包含键盘/手柄导航选项等。
+    ImGuiBackendFlags  BackendFlags;                            // = 0                  // 详见 ImGuiBackendFlags_ 枚举。由后端（imgui_impl_xxx 文件或自定义后端）设置，用于传达后端支持的功能特性。
+    ImVec2      DisplaySize;                                    // <未设置>             // 主显示区域大小，以像素为单位（== GetMainViewport()->Size）。可能每帧都会改变。
+    ImVec2      DisplayFramebufferScale;                        // = (1, 1)             // 主显示密度。用于视网膜（Retina）显示屏等窗口坐标与帧缓冲坐标不同的情况。这会影响字体密度，并最终传递给 ImDrawData::FramebufferScale。
+    float       DeltaTime;                                      // = 1.0f/60.0f         // 自上一帧以来经过的时间，以秒为单位。可能每帧都会改变。
+    float       IniSavingRate;                                  // = 5.0f               // 将位置/大小保存到 .ini 文件的最小间隔时间，单位为秒。
+    const char* IniFilename;                                    // = "imgui.ini"        // .ini 文件的路径（注意：默认的 "imgui.ini" 是相对于当前工作目录的！）。设置为 NULL 可禁用自动 .ini 加载/保存，或者如果你想手动调用 LoadIniSettingsXXX() / SaveIniSettingsXXX() 函数。
+    const char* LogFilename;                                    // = "imgui_log.txt"    // .log 文件的路径（当未指定文件时，作为 ImGui::LogToFile 的默认参数）。
+    void*       UserData;                                       // = NULL               // 存储您自定义的数据。
 
-    // Font system
-    ImFontAtlas*Fonts;                          // <auto>           // Font atlas: load, rasterize and pack one or more fonts into a single texture.
-    ImFont*     FontDefault;                    // = NULL           // Font to use on NewFrame(). Use NULL to uses Fonts->Fonts[0].
-    bool        FontAllowUserScaling;           // = false          // Allow user scaling text of individual window with Ctrl+Wheel.
+    // 字体系统
+    ImFontAtlas*Fonts;                                          // <auto>               // 字体图集：加载、光栅化并将一个或多个字体打包到单个纹理中。
+    ImFont*     FontDefault;                                    // = NULL               // 在 NewFrame() 中使用的字体。设置为 NULL 则使用 Fonts->Fonts[0]。
+    bool        FontAllowUserScaling;                           // = false              // 允许用户通过 Ctrl+滚轮 缩放单个窗口的文本。
 
-    // Keyboard/Gamepad Navigation options
-    bool        ConfigNavSwapGamepadButtons;    // = false          // Swap Activate<>Cancel (A<>B) buttons, matching typical "Nintendo/Japanese style" gamepad layout.
-    bool        ConfigNavMoveSetMousePos;       // = false          // Directional/tabbing navigation teleports the mouse cursor. May be useful on TV/console systems where moving a virtual mouse is difficult. Will update io.MousePos and set io.WantSetMousePos=true.
-    bool        ConfigNavCaptureKeyboard;       // = true           // Sets io.WantCaptureKeyboard when io.NavActive is set.
-    bool        ConfigNavEscapeClearFocusItem;  // = true           // Pressing Escape can clear focused item + navigation id/highlight. Set to false if you want to always keep highlight on.
-    bool        ConfigNavEscapeClearFocusWindow;// = false          // Pressing Escape can clear focused window as well (super set of io.ConfigNavEscapeClearFocusItem).
-    bool        ConfigNavCursorVisibleAuto;     // = true           // Using directional navigation key makes the cursor visible. Mouse click hides the cursor.
-    bool        ConfigNavCursorVisibleAlways;   // = false          // Navigation cursor is always visible.
+    // 键盘/手柄导航选项
+    bool        ConfigNavSwapGamepadButtons;                    // = false              // 交换“激活”与“取消”（A 与 B）按钮，以匹配典型的“任天堂/日式”手柄布局。
+    bool        ConfigNavMoveSetMousePos;                       // = false              // 方向或 Tab 键导航时会传送鼠标光标。在移动虚拟鼠标较为困难的电视/主机系统上可能很有用。将更新 io.MousePos 并设置 io.WantSetMousePos=true。
+    bool        ConfigNavCaptureKeyboard;                       // = true               // 当 io.NavActive 启用时，设置 io.WantCaptureKeyboard。
+    bool        ConfigNavEscapeClearFocusItem;                  // = true               // 按下 Escape 键可以清除焦点物品 + 导航 ID/高亮。如果你想始终保持高亮显示，请设置为 false。
+    bool        ConfigNavEscapeClearFocusWindow;                // = false              // 按下 Escape 键也可以清除聚焦的窗口（是 io.ConfigNavEscapeClearFocusItem 的超集）。
+    bool        ConfigNavCursorVisibleAuto;                     // = true               // 使用方向导航键会使光标可见。鼠标点击则隐藏光标。
+    bool        ConfigNavCursorVisibleAlways;                   // = false              // 导航光标始终可见。
 
-    // Miscellaneous options
-    // (you can visualize and interact with all options in 'Demo->Configuration')
-    bool        MouseDrawCursor;                // = false          // Request ImGui to draw a mouse cursor for you (if you are on a platform without a mouse cursor). Cannot be easily renamed to 'io.ConfigXXX' because this is frequently used by backend implementations.
-    bool        ConfigMacOSXBehaviors;          // = defined(__APPLE__) // Swap Cmd<>Ctrl keys + OS X style text editing cursor movement using Alt instead of Ctrl, Shortcuts using Cmd/Super instead of Ctrl, Line/Text Start and End using Cmd+Arrows instead of Home/End, Double click selects by word instead of selecting whole text, Multi-selection in lists uses Cmd/Super instead of Ctrl.
-    bool        ConfigInputTrickleEventQueue;   // = true           // Enable input queue trickling: some types of events submitted during the same frame (e.g. button down + up) will be spread over multiple frames, improving interactions with low framerates.
-    bool        ConfigInputTextCursorBlink;     // = true           // Enable blinking cursor (optional as some users consider it to be distracting).
-    bool        ConfigInputTextEnterKeepActive; // = false          // [BETA] Pressing Enter will keep item active and select contents (single-line only).
-    bool        ConfigDragClickToInputText;     // = false          // [BETA] Enable turning DragXXX widgets into text input with a simple mouse click-release (without moving). Not desirable on devices without a keyboard.
-    bool        ConfigWindowsResizeFromEdges;   // = true           // Enable resizing of windows from their edges and from the lower-left corner. This requires ImGuiBackendFlags_HasMouseCursors for better mouse cursor feedback. (This used to be a per-window ImGuiWindowFlags_ResizeFromAnySide flag)
-    bool        ConfigWindowsMoveFromTitleBarOnly;  // = false      // Enable allowing to move windows only when clicking on their title bar. Does not apply to windows without a title bar.
-    bool        ConfigWindowsCopyContentsWithCtrlC; // = false      // [EXPERIMENTAL] Ctrl+C copy the contents of focused window into the clipboard. Experimental because: (1) has known issues with nested Begin/End pairs (2) text output quality varies (3) text output is in submission order rather than spatial order.
-    bool        ConfigScrollbarScrollByPage;    // = true           // Enable scrolling page by page when clicking outside the scrollbar grab. When disabled, always scroll to clicked location. When enabled, Shift+Click scrolls to clicked location.
-    float       ConfigMemoryCompactTimer;       // = 60.0f          // Timer (in seconds) to free transient windows/tables memory buffers when unused. Set to -1.0f to disable.
+    // 杂项选项
+    //（您可以在“Demo->Configuration”中查看并交互所有选项）
+    bool        MouseDrawCursor;                                // = false              // 请求 ImGui 为你绘制鼠标光标（如果你所在的平台没有鼠标光标）。由于后端实现频繁使用此项，因此无法轻易将其重命名为 'io.ConfigXXX'。
+    bool        ConfigMacOSXBehaviors;                          // = defined(__APPLE__) // 交换 Cmd<>Ctrl 键 + OS X 风格的文本编辑光标移动（使用 Alt 代替 Ctrl）、快捷键使用 Cmd/Super 代替 Ctrl、行/文本首尾跳转使用 Cmd+方向键代替 Home/End、双击按词选择而非选择全文、列表多选使用 Cmd/Super 代替 Ctrl。
+    bool        ConfigInputTrickleEventQueue;                   // = true               // 启用输入队列滴流：在同一帧内提交的某些类型的事件（例如按钮按下 + 抬起）将分散到多个帧中，从而改善低帧率下的交互体验。
+    bool        ConfigInputTextCursorBlink;                     // = true               // 启用光标闪烁（可选，因为某些用户认为这会分散注意力）。
+    bool        ConfigInputTextEnterKeepActive;                 // = false              // [测试版] 按回车键将保持物品处于激活状态并选中内容（仅限单行）。
+    bool        ConfigDragClickToInputText;                     // = false              // [测试版] 允许通过简单的鼠标点击并释放（不移动）将 DragXXX 控件转换为文本输入。在没有键盘的设备上不建议开启。
+    bool        ConfigWindowsResizeFromEdges;                   // = true               // 允许通过窗口边缘和左下角调整窗口大小。这需要 ImGuiBackendFlags_HasMouseCursors 以获得更好的鼠标光标反馈。（以前这是一个针对单个窗口的 ImGuiWindowFlags_ResizeFromAnySide 标志）
+    bool        ConfigWindowsMoveFromTitleBarOnly;              // = false              // 启用后仅允许通过点击标题栏来移动窗口。不适用于没有标题栏的窗口。
+    bool        ConfigWindowsCopyContentsWithCtrlC;             // = false              // [实验性] 使用 Ctrl+C 将当前焦点窗口的内容复制到剪贴板。实验性原因：(1) 嵌套的 Begin/End 对存在已知问题 (2) 文本输出质量参差不齐 (3) 文本输出顺序是按提交顺序而非空间顺序。
+    bool        ConfigScrollbarScrollByPage;                    // = true               // 启用后，点击滚动条滑块以外的区域将逐页滚动。禁用时，点击将直接滚动至点击位置。启用时，Shift+点击可滚动至点击位置。
+    float       ConfigMemoryCompactTimer;                       // = 60.0f              // 释放未使用的临时窗口/表格内存缓冲区的计时器（以秒为单位）。设置为 -1.0f 可禁用。
 
-    // Inputs Behaviors
-    // (other variables, ones which are expected to be tweaked within UI code, are exposed in ImGuiStyle)
-    float       MouseDoubleClickTime;           // = 0.30f          // Time for a double-click, in seconds.
-    float       MouseDoubleClickMaxDist;        // = 6.0f           // Distance threshold to stay in to validate a double-click, in pixels.
-    float       MouseDragThreshold;             // = 6.0f           // Distance threshold before considering we are dragging.
-    float       KeyRepeatDelay;                 // = 0.275f         // When holding a key/button, time before it starts repeating, in seconds (for buttons in Repeat mode, etc.).
-    float       KeyRepeatRate;                  // = 0.050f         // When holding a key/button, rate at which it repeats, in seconds.
-
-    //------------------------------------------------------------------
-    // Debug options
-    //------------------------------------------------------------------
-
-    // Options to configure Error Handling and how we handle recoverable errors [EXPERIMENTAL]
-    // - Error recovery is provided as a way to facilitate:
-    //    - Recovery after a programming error (native code or scripting language - the latter tends to facilitate iterating on code while running).
-    //    - Recovery after running an exception handler or any error processing which may skip code after an error has been detected.
-    // - Error recovery is not perfect nor guaranteed! It is a feature to ease development.
-    //   You not are not supposed to rely on it in the course of a normal application run.
-    // - Functions that support error recovery are using IM_ASSERT_USER_ERROR() instead of IM_ASSERT().
-    // - By design, we do NOT allow error recovery to be 100% silent. One of the three options needs to be checked!
-    // - Always ensure that on programmers seats you have at minimum Asserts or Tooltips enabled when making direct imgui API calls!
-    //   Otherwise it would severely hinder your ability to catch and correct mistakes!
-    // Read https://github.com/ocornut/imgui/wiki/Error-Handling for details.
-    // - Programmer seats: keep asserts (default), or disable asserts and keep error tooltips (new and nice!)
-    // - Non-programmer seats: maybe disable asserts, but make sure errors are resurfaced (tooltips, visible log entries, use callback etc.)
-    // - Recovery after error/exception: record stack sizes with ErrorRecoveryStoreState(), disable assert, set log callback (to e.g. trigger high-level breakpoint), recover with ErrorRecoveryTryToRecoverState(), restore settings.
-    bool        ConfigErrorRecovery;                // = true       // Enable error recovery support. Some errors won't be detected and lead to direct crashes if recovery is disabled.
-    bool        ConfigErrorRecoveryEnableAssert;    // = true       // Enable asserts on recoverable error. By default call IM_ASSERT() when returning from a failing IM_ASSERT_USER_ERROR()
-    bool        ConfigErrorRecoveryEnableDebugLog;  // = true       // Enable debug log output on recoverable errors.
-    bool        ConfigErrorRecoveryEnableTooltip;   // = true       // Enable tooltip on recoverable errors. The tooltip include a way to enable asserts if they were disabled.
-
-    // Option to enable various debug tools showing buttons that will call the IM_DEBUG_BREAK() macro.
-    // - The Item Picker tool will be available regardless of this being enabled, in order to maximize its discoverability.
-    // - Requires a debugger being attached, otherwise IM_DEBUG_BREAK() options will appear to crash your application.
-    //   e.g. io.ConfigDebugIsDebuggerPresent = ::IsDebuggerPresent() on Win32, or refer to ImOsIsDebuggerPresent() imgui_test_engine/imgui_te_utils.cpp for a Unix compatible version.
-    bool        ConfigDebugIsDebuggerPresent;   // = false          // Enable various tools calling IM_DEBUG_BREAK().
-
-    // Tools to detect code submitting items with conflicting/duplicate IDs
-    // - Code should use PushID()/PopID() in loops, or append "##xx" to same-label identifiers.
-    // - Empty label e.g. Button("") == same ID as parent widget/node. Use Button("##xx") instead!
-    // - See FAQ https://github.com/ocornut/imgui/blob/master/docs/FAQ.md#q-about-the-id-stack-system
-    bool        ConfigDebugHighlightIdConflicts;// = true           // Highlight and show an error message popup when multiple items have conflicting identifiers.
-    bool        ConfigDebugHighlightIdConflictsShowItemPicker;//=true // Show "Item Picker" button in aforementioned popup.
-
-    // Tools to test correct Begin/End and BeginChild/EndChild behaviors.
-    // - Presently Begin()/End() and BeginChild()/EndChild() needs to ALWAYS be called in tandem, regardless of return value of BeginXXX()
-    // - This is inconsistent with other BeginXXX functions and create confusion for many users.
-    // - We expect to update the API eventually. In the meanwhile we provide tools to facilitate checking user-code behavior.
-    bool        ConfigDebugBeginReturnValueOnce;// = false          // First-time calls to Begin()/BeginChild() will return false. NEEDS TO BE SET AT APPLICATION BOOT TIME if you don't want to miss windows.
-    bool        ConfigDebugBeginReturnValueLoop;// = false          // Some calls to Begin()/BeginChild() will return false. Will cycle through window depths then repeat. Suggested use: add "io.ConfigDebugBeginReturnValue = io.KeyShift" in your main loop then occasionally press SHIFT. Windows should be flickering while running.
-
-    // Option to deactivate io.AddFocusEvent(false) handling.
-    // - May facilitate interactions with a debugger when focus loss leads to clearing inputs data.
-    // - Backends may have other side-effects on focus loss, so this will reduce side-effects but not necessary remove all of them.
-    bool        ConfigDebugIgnoreFocusLoss;     // = false          // Ignore io.AddFocusEvent(false), consequently not calling io.ClearInputKeys()/io.ClearInputMouse() in input processing.
-
-    // Option to audit .ini data
-    bool        ConfigDebugIniSettings;         // = false          // Save .ini data with extra comments (particularly helpful for Docking, but makes saving slower)
+    // 输入行为
+    //（其他变量，即那些预期在 UI 代码中进行调整的变量，已在 ImGuiStyle 中公开）
+    float       MouseDoubleClickTime;                           // = 0.30f              // 双击判定时间，以秒为单位。
+    float       MouseDoubleClickMaxDist;                        // = 6.0f               // 判定为双击的距离阈值，单位为像素。
+    float       MouseDragThreshold;                             // = 6.0f               // 判定为拖拽行为前的距离阈值。
+    float       KeyRepeatDelay;                                 // = 0.275f             // 按住按键/按钮时，开始重复触发前的延迟时间，单位为秒（适用于处于重复模式的按钮等）。
+    float       KeyRepeatRate;                                  // = 0.050f             // 按住按键/按钮时，重复触发的频率，单位为秒。
 
     //------------------------------------------------------------------
-    // Platform Identifiers
-    // (the imgui_impl_xxxx backend files are setting those up for you)
+    // 调试选项
     //------------------------------------------------------------------
 
-    // Nowadays those would be stored in ImGuiPlatformIO but we are leaving them here for legacy reasons.
-    // Optional: Platform/Renderer backend name (informational only! will be displayed in About Window) + User data for backend/wrappers to store their own stuff.
-    const char* BackendPlatformName;            // = NULL
-    const char* BackendRendererName;            // = NULL
-    void*       BackendPlatformUserData;        // = NULL           // User data for platform backend
-    void*       BackendRendererUserData;        // = NULL           // User data for renderer backend
-    void*       BackendLanguageUserData;        // = NULL           // User data for non C++ programming language backend
+    // 用于配置错误处理以及我们如何处理可恢复错误的选项 [实验性]
+    // - 提供错误恢复是为了便于：
+    // - 在编程错误（原生代码或脚本语言——后者往往有助于在运行时迭代代码）后进行恢复。
+    // - 在运行异常处理程序或任何可能在检测到错误后跳过代码的错误处理流程后进行恢复。
+    // - 错误恢复既不完美也不保证成功！这是一项旨在简化开发的功能。
+    // - 你不应该在应用程序的正常运行过程中依赖它。
+    // - 支持错误恢复的函数使用的是 IM_ASSERT_USER_ERROR() 而非 IM_ASSERT()。
+    // - 按照设计，我们不允许错误恢复过程完全静默。必须勾选以下三个选项之一！
+    // - 请务必确保在程序员席位上直接调用 imgui API 时，至少启用了断言（Asserts）或工具提示（Tooltips）！
+    // 否则，这将严重阻碍你发现并纠正错误的能力！
+    // 详情请参阅 https://github.com/ocornut/imgui/wiki/Error-Handling。
+    // - 程序员席位：保留断言（默认），或禁用断言并保留错误工具提示（新功能，体验良好！）
+    // - 非程序员席位：可以禁用断言，但要确保错误能够重新显现（工具提示、可见的日志条目、使用回调等）
+    // - 错误/异常后的恢复：使用 ErrorRecoveryStoreState() 记录堆栈大小，禁用断层（assert），设置日志回调（例如触发高级断点），使用 ErrorRecoveryTryToRecoverState() 进行恢复，并还原设置。
+    bool        ConfigErrorRecovery;                            // = true               // 启用错误恢复支持。如果禁用恢复，某些错误将无法被检测到并导致直接崩溃。
+    bool        ConfigErrorRecoveryEnableAssert;                // = true               // 在发生可恢复错误时启用断言。默认情况下，当从失败的 IM_ASSERT_USER_ERROR() 返回时调用 IM_ASSERT()。
+    bool        ConfigErrorRecoveryEnableDebugLog;              // = true               // 启用可恢复错误时的调试日志输出。
+    bool        ConfigErrorRecoveryEnableTooltip;               // = true               // 启用可恢复错误时的工具提示。该工具提示包含一种在断言被禁用时重新启用它们的方法。
+
+    // 选项用于启用各种调试工具，这些工具会显示调用 IM_DEBUG_BREAK() 宏的按钮。
+    // - 无论此项是否启用，物品选择器（Item Picker）工具都将可用，以最大限度地提高其可发现性。
+    // - 需要连接调试器，否则 IM_DEBUG_BREAK() 选项会导致应用程序崩溃。
+    // 例如，在 Win32 上设置 io.ConfigDebugIsDebuggerPresent = ::IsDebuggerPresent()，或者参考 imgui_test_engine/imgui_te_utils.cpp 中的 ImOsIsDebuggerPresent() 以获取 Unix 兼容版本。
+    bool        ConfigDebugIsDebuggerPresent;                   // = false              // 启用各种调用 IM_DEBUG_BREAK() 的工具。
+
+    // 用于检测提交具有冲突/重复 ID 的物品的代码工具
+    // - 代码应在循环中使用 PushID()/PopID()，或在相同标签的标识符后添加 "##xx"。
+    // - 空标签，例如 Button("") == 与父级控件/节点相同的 ID。请改用 Button("##xx")！
+    // - 参阅常见问题解答 https://github.com/ocornut/imgui/blob/master/docs/FAQ.md#q-about-the-id-stack-system
+    bool        ConfigDebugHighlightIdConflicts;                // = true               // 当多个物品具有冲突的标识符时，突出显示并显示错误消息弹窗。
+    bool        ConfigDebugHighlightIdConflictsShowItemPicker;  // = true               // 在上述弹窗中显示“物品选择器”按钮。
+
+    // 用于测试正确Begin/End及BeginChild/EndChild行为的工具。
+    // - 目前 Begin()/End() 和 BeginChild()/EndChild() 必须始终成对调用，无论 BeginXXX() 的返回值为何。
+    // - 这与其他 BeginXXX 函数不一致，给许多用户带来了困扰。
+    // - 我们计划最终更新该 API。在此期间，我们提供了一些工具来方便检查用户代码的行为。
+    bool        ConfigDebugBeginReturnValueOnce;                // = false              // 首次调用 Begin()/BeginChild() 将返回 false。如果你不想遗漏窗口，则需要在应用程序启动时设置此项。
+    bool        ConfigDebugBeginReturnValueLoop;                // = false              // 部分 Begin()/BeginChild() 调用将返回 false。将循环遍历窗口深度并重复。建议用法：在主循环中添加 "io.ConfigDebugBeginReturnValue = io.KeyShift"，然后偶尔按下 SHIFT 键。运行期间窗口应当会出现闪烁。
+
+    // 禁用 io.AddFocusEvent(false) 处理的选项。
+    // - 当焦点丢失导致输入数据清除时，可能有助于与调试器进行交互。
+    // - 后端在失去焦点时可能还有其他副作用，因此这会减少副作用，但不一定能完全消除它们。
+    bool        ConfigDebugIgnoreFocusLoss;                     // = false              // 忽略 io.AddFocusEvent(false)，从而在输入处理中不调用 io.ClearInputKeys()/io.ClearInputMouse()。
+
+    // 审计 .ini 数据的选项
+    bool        ConfigDebugIniSettings;                         // = false              // 保存 .ini 数据时附带额外注释（对停靠功能特别有帮助，但会降低保存速度）
 
     //------------------------------------------------------------------
-    // Input - Call before calling NewFrame()
+    // 平台标识符
+    //（imgui_impl_xxxx 后端文件会为你设置这些内容）
     //------------------------------------------------------------------
 
-    // Input Functions
-    IMGUI_API void  AddKeyEvent(ImGuiKey key, bool down);                   // Queue a new key down/up event. Key should be "translated" (as in, generally ImGuiKey_A matches the key end-user would use to emit an 'A' character)
-    IMGUI_API void  AddKeyAnalogEvent(ImGuiKey key, bool down, float v);    // Queue a new key down/up event for analog values (e.g. ImGuiKey_Gamepad_ values). Dead-zones should be handled by the backend.
-    IMGUI_API void  AddMousePosEvent(float x, float y);                     // Queue a mouse position update. Use -FLT_MAX,-FLT_MAX to signify no mouse (e.g. app not focused and not hovered)
-    IMGUI_API void  AddMouseButtonEvent(int button, bool down);             // Queue a mouse button change
-    IMGUI_API void  AddMouseWheelEvent(float wheel_x, float wheel_y);       // Queue a mouse wheel update. wheel_y<0: scroll down, wheel_y>0: scroll up, wheel_x<0: scroll right, wheel_x>0: scroll left.
-    IMGUI_API void  AddMouseSourceEvent(ImGuiMouseSource source);           // Queue a mouse source change (Mouse/TouchScreen/Pen)
-    IMGUI_API void  AddFocusEvent(bool focused);                            // Queue a gain/loss of focus for the application (generally based on OS/platform focus of your window)
-    IMGUI_API void  AddInputCharacter(unsigned int c);                      // Queue a new character input
-    IMGUI_API void  AddInputCharacterUTF16(ImWchar16 c);                    // Queue a new character input from a UTF-16 character, it can be a surrogate
-    IMGUI_API void  AddInputCharactersUTF8(const char* str);                // Queue a new characters input from a UTF-8 string
-
-    IMGUI_API void  SetKeyEventNativeData(ImGuiKey key, int native_keycode, int native_scancode, int native_legacy_index = -1); // [Optional] Specify index for legacy <1.87 IsKeyXXX() functions with native indices + specify native keycode, scancode.
-    IMGUI_API void  SetAppAcceptingEvents(bool accepting_events);           // Set master flag for accepting key/mouse/text events (default to true). Useful if you have native dialog boxes that are interrupting your application loop/refresh, and you want to disable events being queued while your app is frozen.
-    IMGUI_API void  ClearEventsQueue();                                     // Clear all incoming events.
-    IMGUI_API void  ClearInputKeys();                                       // Clear current keyboard/gamepad state + current frame text input buffer. Equivalent to releasing all keys/buttons.
-    IMGUI_API void  ClearInputMouse();                                      // Clear current mouse state.
+    // 如今这些内容通常存储在 ImGuiPlatformIO 中，但出于兼容性原因，我们仍将它们保留在这里。
+    // 可选：平台/渲染器后端名称（仅供参考！将显示在“关于”窗口中）+ 供后端/包装器存储自定义数据的用户数据。
+    const char* BackendPlatformName;                            // = NULL
+    const char* BackendRendererName;                            // = NULL
+    void*       BackendPlatformUserData;                        // = NULL               // 平台后端的自定义用户数据
+    void*       BackendRendererUserData;                        // = NULL               // 渲染器后端的自定义用户数据
+    void*       BackendLanguageUserData;                        // = NULL               // 非 C++ 编程语言后端的自定义用户数据
 
     //------------------------------------------------------------------
-    // Output - Updated by NewFrame() or EndFrame()/Render()
-    // (when reading from the io.WantCaptureMouse, io.WantCaptureKeyboard flags to dispatch your inputs, it is
-    //  generally easier and more correct to use their state BEFORE calling NewFrame(). See FAQ for details!)
+    // 输入 - 在调用 NewFrame() 之前调用
     //------------------------------------------------------------------
 
-    bool        WantCaptureMouse;                   // Set when Dear ImGui will use mouse inputs, in this case do not dispatch them to your main game/application (either way, always pass on mouse inputs to imgui). (e.g. unclicked mouse is hovering over an imgui window, widget is active, mouse was clicked over an imgui window, etc.).
-    bool        WantCaptureKeyboard;                // Set when Dear ImGui will use keyboard inputs, in this case do not dispatch them to your main game/application (either way, always pass keyboard inputs to imgui). (e.g. InputText active, or an imgui window is focused and navigation is enabled, etc.).
-    bool        WantTextInput;                      // Mobile/console: when set, you may display an on-screen keyboard. This is set by Dear ImGui when it wants textual keyboard input to happen (e.g. when a InputText widget is active).
-    bool        WantSetMousePos;                    // MousePos has been altered, backend should reposition mouse on next frame. Rarely used! Set only when io.ConfigNavMoveSetMousePos is enabled.
-    bool        WantSaveIniSettings;                // When manual .ini load/save is active (io.IniFilename == NULL), this will be set to notify your application that you can call SaveIniSettingsToMemory() and save yourself. Important: clear io.WantSaveIniSettings yourself after saving!
-    bool        NavActive;                          // Keyboard/Gamepad navigation is currently allowed (will handle ImGuiKey_NavXXX events) = a window is focused and it doesn't use the ImGuiWindowFlags_NoNavInputs flag.
-    bool        NavVisible;                         // Keyboard/Gamepad navigation highlight is visible and allowed (will handle ImGuiKey_NavXXX events).
-    float       Framerate;                          // Estimate of application framerate (rolling average over 60 frames, based on io.DeltaTime), in frame per second. Solely for convenience. Slow applications may not want to use a moving average or may want to reset underlying buffers occasionally.
-    int         MetricsRenderVertices;              // Vertices output during last call to Render()
-    int         MetricsRenderIndices;               // Indices output during last call to Render() = number of triangles * 3
-    int         MetricsRenderWindows;               // Number of visible windows
-    int         MetricsActiveWindows;               // Number of active windows
-    ImVec2      MouseDelta;                         // Mouse delta. Note that this is zero if either current or previous position are invalid (-FLT_MAX,-FLT_MAX), so a disappearing/reappearing mouse won't have a huge delta.
+    // 输入函数
+    IMGUI_API void AddKeyEvent(ImGuiKey key, bool down);                // 排队一个新的按键按下/释放事件。按键应该是“转换后”的（例如，通常 ImGuiKey_A 对应最终用户用于输入字符 'A' 的按键）
+    IMGUI_API void AddKeyAnalogEvent(ImGuiKey key, bool down, float v); // 为模拟量值（例如 ImGuiKey_Gamepad_ 系列值）排队一个新的按键按下/释放事件。死区（Dead-zones）应由后端处理。
+    IMGUI_API void AddMousePosEvent(float x, float y);                  // 排队一个鼠标位置更新。使用 -FLT_MAX, -FLT_MAX 表示无鼠标（例如应用程序未聚焦且未被悬停）
+    IMGUI_API void AddMouseButtonEvent(int button, bool down);          // 将鼠标按键状态更改加入队列
+    IMGUI_API void AddMouseWheelEvent(float wheel_x, float wheel_y);    // 将鼠标滚轮更新加入队列。wheel_y<0: 向下滚动, wheel_y>0: 向上滚动, wheel_x<0: 向右滚动, wheel_x>0: 向左滚动。
+    IMGUI_API void AddMouseSourceEvent(ImGuiMouseSource source);        // 将鼠标来源更改（鼠标/触摸屏/笔）加入队列
+    IMGUI_API void AddFocusEvent(bool focused);                         // 将应用程序获得/失去焦点的事件加入队列（通常基于操作系统/平台对窗口的聚焦状态）
+    IMGUI_API void AddInputCharacter(unsigned int c);                   // 将一个新的字符输入排入队列
+    IMGUI_API void AddInputCharacterUTF16(ImWchar16 c);                 // 将一个来自 UTF-16 字符的新字符输入排入队列，该字符可以是代理对（surrogate）
+    IMGUI_API void AddInputCharactersUTF8(const char* str);             // 将来自 UTF-8 字符串的新字符输入排入队列
+
+    IMGUI_API void SetKeyEventNativeData(ImGuiKey key, int native_keycode, int native_scancode, int native_legacy_index = -1); // [可选] 为 1.87 版本之前的旧版 IsKeyXXX() 函数指定原生索引，并指定原生键码（keycode）和扫描码（scancode）。
+    IMGUI_API void SetAppAcceptingEvents(bool accepting_events);        // 设置接受键盘/鼠标/文本事件的总标志（默认为 true）。如果你的原生对话框中断了应用程序循环/刷新，并且你希望在应用冻结时禁用事件排队，则此功能非常有用。
+    IMGUI_API void ClearEventsQueue();                                  // 清除所有传入事件。
+    IMGUI_API void ClearInputKeys();                                    // 清除当前键盘/手柄状态 + 当前帧文本输入缓冲区。相当于释放所有按键/按钮。
+    IMGUI_API void ClearInputMouse();                                   // 清除当前鼠标状态。
 
     //------------------------------------------------------------------
-    // [Internal] Dear ImGui will maintain those fields. Forward compatibility not guaranteed!
+    // 输出 - 由 NewFrame() 或 EndFrame()/Render() 更新
+    // （当通过读取 io.WantCaptureMouse, io.WantCaptureKeyboard 标志来分发输入时，
+    // 通常在调用 NewFrame() 之前使用它们的状态会更简单且更准确。详见 FAQ！）
     //------------------------------------------------------------------
 
-    ImGuiContext* Ctx;                              // Parent UI context (needs to be set explicitly by parent).
+    bool        WantCaptureMouse;               // 当 Dear ImGui 将使用鼠标输入时置为 true，在这种情况下请勿将输入分发给您的主游戏/应用程序（无论哪种情况，始终将鼠标输入传递给 imgui）。（例如：未点击的鼠标正悬停在 imgui 窗口上、控件处于激活状态、鼠标在 imgui 窗口上点击等）。
+    bool        WantCaptureKeyboard;            // 当 Dear ImGui 将使用键盘输入时设为 true，在这种情况下请勿将输入分发给您的主游戏/应用程序（无论哪种情况，始终都要将键盘输入传递给 imgui）。（例如：InputText 处于活动状态，或某个 imgui 窗口处于聚焦状态且启用了导航等）。
+    bool        WantTextInput;                  // 移动端/主机端：当设为 true 时，您可以显示屏幕键盘。当 Dear ImGui 需要文本键盘输入时（例如当 InputText 控件处于活动状态时），会设置此项。
+    bool        WantSetMousePos;                // MousePos 已被更改，后端应在下一帧重新定位鼠标。极少使用！仅在启用 io.ConfigNavMoveSetMousePos 时设置。
+    bool        WantSaveIniSettings;            // 当手动加载/保存 .ini 处于活动状态（io.IniFilename == NULL）时，此标志将被设置以通知您的应用程序可以调用 SaveIniSettingsToMemory() 并自行存档。重要提示：存档后请自行清除 io.WantSaveIniSettings！
+    bool        NavActive;                      // 当前允许键盘/手柄导航（将处理 ImGuiKey_NavXXX 事件） = 某个窗口处于聚焦状态且未使用 ImGuiWindowFlags_NoNavInputs 标志。
+    bool        NavVisible;                     // 键盘/手柄导航高亮显示可见且允许（将处理 ImGuiKey_NavXXX 事件）。
+    float       Framerate;                      // 应用程序帧率的估算值（基于 io.DeltaTime 的 60 帧滚动平均值），单位为帧/秒。仅为方便起见提供。运行缓慢的应用程序可能不希望使用移动平均值，或者可能希望偶尔重置底层缓冲区。
+    int         MetricsRenderVertices;          // 上一次调用 Render() 期间输出的顶点数
+    int         MetricsRenderIndices;           // 上一次调用 Render() 期间输出的索引数 = 三角形数量 * 3
+    int         MetricsRenderWindows;           // 可见窗口的数量
+    int         MetricsActiveWindows;           // 活动窗口的数量
+    ImVec2      MouseDelta;                     // 鼠标增量。请注意，如果当前或前一个位置无效 (-FLT_MAX, -FLT_MAX)，则此值为零，因此消失/重新出现的鼠标不会产生巨大的增量。
 
-    // Main Input State
-    // (this block used to be written by backend, since 1.87 it is best to NOT write to those directly, call the AddXXX functions above instead)
-    // (reading from those variables is fair game, as they are extremely unlikely to be moving anywhere)
-    ImVec2      MousePos;                           // Mouse position, in pixels. Set to ImVec2(-FLT_MAX, -FLT_MAX) if mouse is unavailable (on another screen, etc.)
-    bool        MouseDown[5];                       // Mouse buttons: 0=left, 1=right, 2=middle + extras (ImGuiMouseButton_COUNT == 5). Dear ImGui mostly uses left and right buttons. Other buttons allow us to track if the mouse is being used by your application + available to user as a convenience via IsMouse** API.
-    float       MouseWheel;                         // Mouse wheel Vertical: 1 unit scrolls about 5 lines text. >0 scrolls Up, <0 scrolls Down. Hold Shift to turn vertical scroll into horizontal scroll.
-    float       MouseWheelH;                        // Mouse wheel Horizontal. >0 scrolls Left, <0 scrolls Right. Most users don't have a mouse with a horizontal wheel, may not be filled by all backends.
-    ImGuiMouseSource MouseSource;                   // Mouse actual input peripheral (Mouse/TouchScreen/Pen).
-    bool        KeyCtrl;                            // Keyboard modifier down: Ctrl (non-macOS), Cmd (macOS)
-    bool        KeyShift;                           // Keyboard modifier down: Shift
-    bool        KeyAlt;                             // Keyboard modifier down: Alt
-    bool        KeySuper;                           // Keyboard modifier down: Windows/Super (non-macOS), Ctrl (macOS)
+    //------------------------------------------------------------------
+    // [内部] Dear ImGui 将维护这些字段。不保证向前兼容性！
+    //------------------------------------------------------------------
 
-    // Other state maintained from data above + IO function calls
-    ImGuiKeyChord KeyMods;                          // Key mods flags (any of ImGuiMod_Ctrl/ImGuiMod_Shift/ImGuiMod_Alt/ImGuiMod_Super flags, same as io.KeyCtrl/KeyShift/KeyAlt/KeySuper but merged into flags). Read-only, updated by NewFrame()
-    ImGuiKeyData  KeysData[ImGuiKey_NamedKey_COUNT];// Key state for all known keys. MUST use 'key - ImGuiKey_NamedKey_BEGIN' as index. Use IsKeyXXX() functions to access this.
-    bool        WantCaptureMouseUnlessPopupClose;   // Alternative to WantCaptureMouse: (WantCaptureMouse == true && WantCaptureMouseUnlessPopupClose == false) when a click over void is expected to close a popup.
-    ImVec2      MousePosPrev;                       // Previous mouse position (note that MouseDelta is not necessary == MousePos-MousePosPrev, in case either position is invalid)
-    ImVec2      MouseClickedPos[5];                 // Position at time of clicking
-    double      MouseClickedTime[5];                // Time of last click (used to figure out double-click)
-    bool        MouseClicked[5];                    // Mouse button went from !Down to Down (same as MouseClickedCount[x] != 0)
-    bool        MouseDoubleClicked[5];              // Has mouse button been double-clicked? (same as MouseClickedCount[x] == 2)
-    ImU16       MouseClickedCount[5];               // == 0 (not clicked), == 1 (same as MouseClicked[]), == 2 (double-clicked), == 3 (triple-clicked) etc. when going from !Down to Down
-    ImU16       MouseClickedLastCount[5];           // Count successive number of clicks. Stays valid after mouse release. Reset after another click is done.
-    bool        MouseReleased[5];                   // Mouse button went from Down to !Down
-    double      MouseReleasedTime[5];               // Time of last released (rarely used! but useful to handle delayed single-click when trying to disambiguate them from double-click).
-    bool        MouseDownOwned[5];                  // Track if button was clicked inside a dear imgui window or over void blocked by a popup. We don't request mouse capture from the application if click started outside ImGui bounds.
-    bool        MouseDownOwnedUnlessPopupClose[5];  // Track if button was clicked inside a dear imgui window.
-    bool        MouseWheelRequestAxisSwap;          // On a non-Mac system, holding Shift requests WheelY to perform the equivalent of a WheelX event. On a Mac system this is already enforced by the system.
-    bool        MouseCtrlLeftAsRightClick;          // (OSX) Set to true when the current click was a Ctrl+Click that spawned a simulated right click
-    float       MouseDownDuration[5];               // Duration the mouse button has been down (0.0f == just clicked)
-    float       MouseDownDurationPrev[5];           // Previous time the mouse button has been down
-    float       MouseDragMaxDistanceSqr[5];         // Squared maximum distance of how much mouse has traveled from the clicking point (used for moving thresholds)
-    float       PenPressure;                        // Touch/Pen pressure (0.0f to 1.0f, should be >0.0f only when MouseDown[0] == true). Helper storage currently unused by Dear ImGui.
-    bool        AppFocusLost;                       // Only modify via AddFocusEvent()
-    bool        AppAcceptingEvents;                 // Only modify via SetAppAcceptingEvents()
-    ImWchar16   InputQueueSurrogate;                // For AddInputCharacterUTF16()
-    ImVector<ImWchar> InputQueueCharacters;         // Queue of _characters_ input (obtained by platform backend). Fill using AddInputCharacter() helper.
+    ImGuiContext* Ctx; // 父级 UI 上下文（需要由父级显式设置）。
 
-    // Legacy: before 1.87, we required backend to fill io.KeyMap[] (imgui->native map) during initialization and io.KeysDown[] (native indices) every frame.
-    // This is still temporarily supported as a legacy feature. However the new preferred scheme is for backend to call io.AddKeyEvent().
-    //   Old (<1.87):  ImGui::IsKeyPressed(ImGui::GetIO().KeyMap[ImGuiKey_Space]) --> New (1.87+) ImGui::IsKeyPressed(ImGuiKey_Space)
-    //   Old (<1.87):  ImGui::IsKeyPressed(MYPLATFORM_KEY_SPACE)                  --> New (1.87+) ImGui::IsKeyPressed(ImGuiKey_Space)
-    // Read https://github.com/ocornut/imgui/issues/4921 for details.
-    //int       KeyMap[ImGuiKey_COUNT];             // [LEGACY] Input: map of indices into the KeysDown[512] entries array which represent your "native" keyboard state. The first 512 are now unused and should be kept zero. Legacy backend will write into KeyMap[] using ImGuiKey_ indices which are always >512.
-    //bool      KeysDown[ImGuiKey_COUNT];           // [LEGACY] Input: Keyboard keys that are pressed (ideally left in the "native" order your engine has access to keyboard keys, so you can use your own defines/enums for keys). This used to be [512] sized. It is now ImGuiKey_COUNT to allow legacy io.KeysDown[GetKeyIndex(...)] to work without an overflow.
-    //float     NavInputs[ImGuiNavInput_COUNT];     // [LEGACY] Since 1.88, NavInputs[] was removed. Backends from 1.60 to 1.86 won't build. Feed gamepad inputs via io.AddKeyEvent() and ImGuiKey_GamepadXXX enums.
-    //void*     ImeWindowHandle;                    // [Obsoleted in 1.87] Set ImGuiViewport::PlatformHandleRaw instead. Set this to your HWND to get automatic IME cursor positioning.
+    // 主要输入状态
+    //（此区块以前由后端写入，自 1.87 版本起，最好不要直接写入这些字段，请改为调用上方的 AddXXX 函数）
+    //（读取这些变量是安全的，因为它们极不可能发生变动）
+    ImVec2      MousePos;                           // 鼠标位置，以像素为单位。如果鼠标不可用（在另一个屏幕上等），则设置为 ImVec2(-FLT_MAX, -FLT_MAX)
+    bool        MouseDown[5];                       // 鼠标按钮：0=左键，1=右键，2=中键 + 其他 (ImGuiMouseButton_COUNT == 5)。Dear ImGui 主要使用左右键。其他按钮允许我们跟踪鼠标是否正被您的应用程序使用，并通过 IsMouse** API 方便用户调用。
+    float       MouseWheel;                         // 鼠标垂直滚轮：1 个单位大约滚动 5 行文本。>0 向上滚动，<0 向下滚动。按住 Shift 键可将垂直滚动转为水平滚动。
+    float       MouseWheelH;                        // 鼠标水平滚轮。>0 向左滚动，<0 向右滚动。大多数用户的鼠标没有水平滚轮，并非所有后端都会填充此项。
+    ImGuiMouseSource MouseSource;                   // 鼠标实际输入外设（鼠标/触摸屏/手写笔）。
+    bool        KeyCtrl;                            // 键盘修饰键按下：Ctrl (非 macOS), Cmd (macOS)
+    bool        KeyShift;                           // 键盘修饰键按下：Shift
+    bool        KeyAlt;                             // 键盘修饰键按下：Alt
+    bool        KeySuper;                           // 键盘修饰键按下：Windows/Super (非 macOS)，Ctrl (macOS)
+
+    // 根据上述数据和 IO 函数调用维护的其他状态
+    ImGuiKeyChord KeyMods;                          // 按键修饰键标志（包含 ImGuiMod_Ctrl/ImGuiMod_Shift/ImGuiMod_Alt/ImGuiMod_Super 中的任意标志，与 io.KeyCtrl/KeyShift/KeyAlt/KeySuper 相同，但合并为标志位）。只读，由 NewFrame() 更新。
+    ImGuiKeyData  KeysData[ImGuiKey_NamedKey_COUNT];// 所有已知按键的状态。必须使用 'key - ImGuiKey_NamedKey_BEGIN' 作为索引。请使用 IsKeyXXX() 函数进行访问。
+    bool        WantCaptureMouseUnlessPopupClose;   // WantCaptureMouse 的替代方案：当点击空白区域预期会关闭弹出窗口时，(WantCaptureMouse == true && WantCaptureMouseUnlessPopupClose == false)。
+    ImVec2      MousePosPrev;                       // 上一次鼠标位置（注意，如果任一位置无效，MouseDelta 不一定等于 MousePos - MousePosPrev）
+    ImVec2      MouseClickedPos[5];                 // 点击时的位置
+    double      MouseClickedTime[5];                // 上次点击的时间（用于计算双击）
+    bool        MouseClicked[5];                    // 鼠标按键状态从“未按下”变为“按下”（等同于 MouseClickedCount[x] != 0）
+    bool        MouseDoubleClicked[5];              // 鼠标按键是否被双击？（等同于 MouseClickedCount[x] == 2）
+    ImU16       MouseClickedCount[5];               // 当状态从“未按下”变为“按下”时：== 0 (未点击), == 1 (等同于 MouseClicked[]), == 2 (双击), == 3 (三击) 等。
+    ImU16       MouseClickedLastCount[5];           // 连续点击次数。在鼠标松开后保持有效。在下一次点击完成后重置。
+    bool        MouseReleased[5];                   // 鼠标按键状态从“按下”变为“未按下”。
+    double      MouseReleasedTime[5];               // 上次松开的时间（很少使用！但在尝试区分单击与双击时，用于处理延迟单击非常有用）。
+    bool        MouseDownOwned[5];                  // 追踪按钮是在 Dear ImGui 窗口内点击的，还是在被弹出窗口阻断的空白区域点击的。如果点击始于 ImGui 边界之外，我们不会向应用程序请求鼠标捕获。
+    bool        MouseDownOwnedUnlessPopupClose[5];  // 追踪鼠标按键是否在 Dear ImGui 窗口内点击。
+    bool        MouseWheelRequestAxisSwap;          // 在非 Mac 系统上，按住 Shift 键会请求将 WheelY（纵向滚轮）转换为 WheelX（横向滚轮）事件。在 Mac 系统上，这已由系统强制执行。
+    bool        MouseCtrlLeftAsRightClick;          // (OSX) 当当前的点击是 Ctrl+左键点击并产生了一个模拟右键点击时，设为 true。
+    float       MouseDownDuration[5];               // 鼠标按键按下的持续时间（0.0f 表示刚刚点击）
+    float       MouseDownDurationPrev[5];           // 鼠标按键上次持续按下的时间
+    float       MouseDragMaxDistanceSqr[5];         // 鼠标从点击点移动的最大距离的平方（用于移动阈值）
+    float       PenPressure;                        // 触摸/笔压（0.0f 到 1.0f，仅当 MouseDown[0] == true 时应 >0.0f）。目前 Dear ImGui 尚未使用的辅助存储。
+    bool        AppFocusLost;                       // 仅通过 AddFocusEvent() 修改
+    bool        AppAcceptingEvents;                 // 仅通过 SetAppAcceptingEvents() 修改
+    ImWchar16   InputQueueSurrogate;                // 用于 AddInputCharacterUTF16()
+    ImVector<ImWchar> InputQueueCharacters;         // 输入字符队列（由平台后端获取）。使用 AddInputCharacter() 辅助函数填充。
+
+    // 旧版遗留：在 1.87 版本之前，我们要求后端在初始化期间填充 io.KeyMap[]（imgui 到原生键码的映射），并在每一帧填充 io.KeysDown[]（原生索引）。
+    // 这目前仍作为一项遗留功能被临时支持。然而，现在更推荐的方案是由后端调用 io.AddKeyEvent()。
+    // 旧版 (<1.87): ImGui::IsKeyPressed(ImGui::GetIO().KeyMap[ImGuiKey_Space]) --> 新版 (1.87+) ImGui::IsKeyPressed(ImGuiKey_Space)
+    // 旧版 (<1.87): ImGui::IsKeyPressed(MYPLATFORM_KEY_SPACE) --> 新版 (1.87+) ImGui::IsKeyPressed(ImGuiKey_Space)
+    // 详情请参阅 https://github.com/ocornut/imgui/issues/4921。
+    //int KeyMap[ImGuiKey_COUNT]; // [旧版] 输入：KeysDown[512] 条目数组的索引映射，代表您的“原生”键盘状态。前 512 个现在已不再使用，应保持为零。旧版后端将使用始终大于 512 的 ImGuiKey_ 索引写入 KeyMap[]。
+    //bool KeysDown[ImGuiKey_COUNT]; // [旧版] 输入：已按下的键盘按键（理想情况下保留您的引擎访问键盘按键的“原生”顺序，以便您可以使用自己的按键定义/枚举）。此数组以前的大小为 [512]。现在改为 ImGuiKey_COUNT，以允许旧版的 io.KeysDown[GetKeyIndex(...)] 在不溢出的情况下工作。
+    //float NavInputs[ImGuiNavInput_COUNT]; // [旧版] 自 1.88 起，NavInputs[] 已被移除。1.60 到 1.86 版本的后端将无法编译。请通过 io.AddKeyEvent() 和 ImGuiKey_GamepadXXX 枚举提供手柄输入。
+    //void* ImeWindowHandle; // [在 1.87 中废弃] 请改为设置 ImGuiViewport::PlatformHandleRaw。将其设置为您的 HWND 以获取自动 IME 光标定位。
 
 #ifndef IMGUI_DISABLE_OBSOLETE_FUNCTIONS
-    float       FontGlobalScale;                    // Moved io.FontGlobalScale to style.FontScaleMain in 1.92 (June 2025)
+    float FontGlobalScale; // 在 1.92 版本（2025 年 6 月）中，io.FontGlobalScale 已移至 style.FontScaleMain
 
-    // Legacy: before 1.91.1, clipboard functions were stored in ImGuiIO instead of ImGuiPlatformIO.
-    // As this is will affect all users of custom engines/backends, we are providing proper legacy redirection (will obsolete).
+    // 遗留问题：在 1.91.1 版本之前，剪贴板函数存储在 ImGuiIO 中，而非 ImGuiPlatformIO。
+    // 由于这将影响所有使用自定义引擎/后端的开发者，我们提供了适当的旧版重定向（后续将废弃）。
     const char* (*GetClipboardTextFn)(void* user_data);
     void        (*SetClipboardTextFn)(void* user_data, const char* text);
     void*       ClipboardUserData;
 
-    //void ClearInputCharacters() { InputQueueCharacters.resize(0); } // [Obsoleted in 1.89.8] Clear the current frame text input buffer. Now included within ClearInputKeys(). Removed this as it is ambiguous/misleading and generally incorrect to use with the existence of a higher-level input queue.
+    //void ClearInputCharacters() { InputQueueCharacters.resize(0); } // [在 1.89.8 版本中已废弃] 清除当前帧的文本输入缓冲区。现在已包含在 ClearInputKeys() 中。移除此函数是因为其含义模糊/具有误导性，且在存在更高级别输入队列的情况下，使用它通常是不正确的。
 #endif
 
     IMGUI_API   ImGuiIO();
