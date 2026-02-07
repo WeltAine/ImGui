@@ -77,3 +77,12 @@ examples/example_sdl3_opengl3/example_sdl3_opengl3
 examples/example_sdl3_sdlgpu3/example_sdl3_sdlgpu3
 examples/example_sdl3_sdlrenderer3/example_sdl3_sdlrenderer3
 examples/example_sdl3_vulkan/example_sdl3_vulkan
+
+
+## my ignore file
+#忽略文件夹
+bin/
+bin-int/
+
+#忽略文件
+ImGui.vcxproj
